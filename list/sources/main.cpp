@@ -34,6 +34,7 @@ int             push_front      (list_t* my_list, int elem);
 int             push_back       (list_t* my_list, int elem);
 int             emplace_back    (list_t* my_list, int elem, int elem_push);
 int             emplace_front   (list_t* my_list, int elem, int elem_push);
+int             remove          (list_t* my_list, int elem);
 
 //-------------------------------------------------------------------------
 
@@ -47,7 +48,10 @@ int main ()
     push_back (my_list, 3);
     push_back (my_list, 2);
     push_back (my_list, 1);
+
     // emplace_front (my_list, 1, 10);
+
+    remove (my_list, 2);
 
     dump_list (my_list);
 
@@ -207,6 +211,43 @@ int push_back (list_t* my_list, int elem)
 
 //-------------------------------------------------------------------------
 
+int remove (list_t* my_list, int elem)
+{
+    list_error (my_list);
+
+    int number_elem = my_list->head;
+
+    int next_elem = 0;
+    int prev_elem = 0;
+
+    for (int i = 0; i < my_list->capacity - my_list->number_free - NULL_ELEM; i++)
+    {
+        if (my_list->data[number_elem] == elem)
+        {
+            next_elem = my_list->next[number_elem];
+            prev_elem = my_list->prev[number_elem];
+        }
+        else
+        {
+            number_elem = my_list->next[number_elem];
+        }
+    }
+
+    if (next_elem != 0)
+    {
+        my_list->prev[next_elem] = prev_elem;
+    }
+
+    if (prev_elem != 0)
+    {
+        my_list->next[prev_elem] = next_elem;
+    }
+
+    return 0;
+}
+
+//-------------------------------------------------------------------------
+
 int emplace_back (list_t* my_list, int elem, int elem_push)
 {
     return 0;
@@ -214,19 +255,28 @@ int emplace_back (list_t* my_list, int elem, int elem_push)
 
 //-------------------------------------------------------------------------
 
-// emplace_front (list_t* my_list, int elem, int elem_push)
-// {
-//     list_error (my_list);
+int emplace_front (list_t* my_list, int elem, int elem_push)
+{
+    list_error (my_list);
+
+//     int number_elem = my_list->head;
 //
 //     int next_elem = 0;
-//
-//     for (int i = 0; i < my_list->capacity - my_list->number_free - NULL_ELEM; i++)
-//     {
-//
-//     }
-//
-//     int tail_last = my_list->tail;
-//
+//     int prev_elem = 0;
+
+    // for (int i = 0; i < my_list->capacity - my_list->number_free - NULL_ELEM; i++)
+    // {
+    //     if (my_list->data[number_elem] == elem)
+    //     {
+    //         next_elem = my_list->head[number_elem];
+    //         prev_elem = my_list->tail[number_elem];
+    //     }
+    //     else
+    //     {
+    //         number_elem = my_list->next[number_elem];
+    //     }
+    // }
+
 //     my_list->number_free--;
 //
 //     my_list->tail = my_list->free;
@@ -246,9 +296,9 @@ int emplace_back (list_t* my_list, int elem, int elem_push)
 //     }
 //
 //     my_list->next[my_list->tail] = 0;
-//
-//     return 0;
-// }
+
+    return 0;
+}
 
 //-------------------------------------------------------------------------
 
