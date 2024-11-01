@@ -1,6 +1,6 @@
-#ifndef MAIN_H
+#ifndef OPERATION_ELEMENTS_H
 
-#define NAIN_H
+#define OPERATION_ELEMENTS_H
 
 typedef enum list_check
 {
@@ -53,4 +53,4 @@ int             emplace_front   (list_t* my_list, int elem, int elem_push);
 */
 int             remove          (list_t* my_list, int elem);
 
-#endif // MAIN_H
+#endif // OPERATION_ELEMENTS_H

@@ -1,6 +1,6 @@
-#ifndef MAIN_H
+#ifndef GENERAL_FUNC_H
 
-#define NAIN_H
+#define GENERAL_FUNC_H
 
 typedef enum list_check
 {
@@ -16,7 +16,7 @@ list_t*         ctor_list       ();
 /*
 дистструктор списка
 */
-int             dtor_list       (list_t* my_list);
+int             dtor_list       (list_t* my_list); //TODO two header - verificate and list.h
 
 /*
 верификатор
@@ -53,4 +53,4 @@ int             emplace_front   (list_t* my_list, int elem, int elem_push);
 */
 int             remove          (list_t* my_list, int elem);
 
-#endif // MAIN_H
+#endif // GENERAL_FUNC_H

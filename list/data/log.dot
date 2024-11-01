@@ -1,20 +1,20 @@
 digraph G{
 	rankdir=LR;
-	elem_list [shape=record, label= "LIST | CAPACITY: 10 | <f_head> HEAD: 1 | <f_tail> TAIL: 6 | <f_free> FREE: 7 | NUMBER_FREE: 3"];
-	elem_0 [shape=record, label= "IP: 0 | DATA: -992416| NEXT: 0| PREV: 0"];
-	elem_1 [shape=record, label= "IP: 1 | DATA: 6| NEXT: 2| PREV: 0"];
-	elem_2 [shape=record, label= "IP: 2 | DATA: 5| NEXT: 3| PREV: 1"];
-	elem_3 [shape=record, label= "IP: 3 | DATA: 4| NEXT: 4| PREV: 2"];
-	elem_4 [shape=record, label= "IP: 4 | DATA: 3| NEXT: 6| PREV: 3"];
-	elem_5 [shape=record, label= "IP: 5 | DATA: 2| NEXT: 6| PREV: 4"];
-	elem_6 [shape=record, label= "IP: 6 | DATA: 1| NEXT: 0| PREV: 4"];
-	elem_7 [shape=record, label= "IP: 7 | DATA: -992416| NEXT: -8| PREV: -1"];
-	elem_8 [shape=record, label= "IP: 8 | DATA: -992416| NEXT: -9| PREV: -1"];
-	elem_9 [shape=record, label= "IP: 9 | DATA: -992416| NEXT: 0| PREV: -1"];
+	elem_list [color = "red",shape=record, label= "LIST | CAPACITY: 10 | <f_head> HEAD: 7 | <f_tail> TAIL: 8 | <f_free> FREE: 9 | NUMBER_FREE: 7"];
+	elem_0 [color = "blue", shape=record, label= "IP: 0 | DATA: -992416| NEXT: 0| PREV: 0"];
+	elem_1 [color = "green", shape=record, label= "IP: 1 | DATA: -992416| NEXT: 0| PREV: -1"];
+	elem_2 [color = "green", shape=record, label= "IP: 2 | DATA: -992416| NEXT: -1| PREV: -1"];
+	elem_3 [color = "green", shape=record, label= "IP: 3 | DATA: -992416| NEXT: -2| PREV: -1"];
+	elem_4 [color = "green", shape=record, label= "IP: 4 | DATA: -992416| NEXT: -3| PREV: -1"];
+	elem_5 [color = "green", shape=record, label= "IP: 5 | DATA: -992416| NEXT: -6| PREV: -1"];
+	elem_6 [color = "green", shape=record, label= "IP: 6 | DATA: -992416| NEXT: -4| PREV: -1"];
+	elem_7 [color = "blue", shape=record, label= "IP: 7 | DATA: 7| NEXT: 8| PREV: 0"];
+	elem_8 [color = "blue", shape=record, label= "IP: 8 | DATA: 8| NEXT: 0| PREV: 7"];
+	elem_9 [color = "green", shape=record, label= "IP: 9 | DATA: -992416| NEXT: -5| PREV: -1"];
 	elem_0 -> elem_0;
-	elem_list:<f_free> -> elem_7;
-	elem_7 -> elem_8 -> elem_9 -> elem_0;
-	elem_list:<f_head> -> elem_1;
-	elem_list:<f_tail> -> elem_6;
-	elem_1 -> elem_2 -> elem_3 -> elem_4 -> elem_6 -> elem_0 -> elem_0;
+	elem_list:<f_free> -> elem_9;
+	elem_9 -> elem_5 -> elem_6 -> elem_4 -> elem_3 -> elem_2 -> elem_1 -> elem_0;
+	elem_list:<f_head> -> elem_7;
+	elem_list:<f_tail> -> elem_8;
+	elem_7 -> elem_8 -> elem_0;
 }

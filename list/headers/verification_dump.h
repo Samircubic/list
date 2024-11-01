@@ -1,17 +1,12 @@
-#ifndef MAIN_H
+#ifndef VERIFICATION_DUMP_H
 
-#define NAIN_H
+#define VERIFICATION_DUMP_H
 
 typedef enum list_check
 {
     OK,
     ERROR
 } list_check_t;
-
-/*
-конструктор списка
-*/
-list_t*         ctor_list       ();
 
 /*
 дистструктор списка
@@ -53,4 +48,4 @@ int             emplace_front   (list_t* my_list, int elem, int elem_push);
 */
 int             remove          (list_t* my_list, int elem);
 
-#endif // MAIN_H
+#endif // VERIFICATION_DUMP_H
