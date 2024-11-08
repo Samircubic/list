@@ -1,0 +1,20 @@
+digraph G{
+	rankdir=LR;
+	elem_list [color = "red",shape=record, label= "LIST | CAPACITY: 10 | <f_head> HEAD: 7 | <f_tail> TAIL: 8 | <f_free> FREE: 9 | NUMBER_FREE: 7"];
+	elem_0 [color = "blue", shape=record, label= "IP: 0 | DATA: -992416| NEXT: 7| PREV: 8"];
+	elem_1 [color = "blue", shape=record, label= "IP: 1 | DATA: 6| NEXT: 2| PREV: 0"];
+	elem_2 [color = "blue", shape=record, label= "IP: 2 | DATA: 5| NEXT: 3| PREV: 1"];
+	elem_3 [color = "blue", shape=record, label= "IP: 3 | DATA: 4| NEXT: 4| PREV: 2"];
+	elem_4 [color = "blue", shape=record, label= "IP: 4 | DATA: 3| NEXT: 5| PREV: 3"];
+	elem_5 [color = "green", shape=record, label= "IP: 5 | DATA: -992416| NEXT: 0| PREV: -1"];
+	elem_6 [color = "blue", shape=record, label= "IP: 6 | DATA: 1| NEXT: 0| PREV: 5"];
+	elem_7 [color = "blue", shape=record, label= "IP: 7 | DATA: 7| NEXT: 8| PREV: 0"];
+	elem_8 [color = "blue", shape=record, label= "IP: 8 | DATA: 8| NEXT: 0| PREV: 7"];
+	elem_9 [color = "green", shape=record, label= "IP: 9 | DATA: -992416| NEXT: -5| PREV: -1"];
+	elem_0 -> elem_0;
+	elem_list:<f_free> -> elem_9;
+	elem_9 -> elem_5 -> elem_0;
+	elem_list:<f_head> -> elem_7;
+	elem_list:<f_tail> -> elem_8;
+	elem_7 -> elem_8 -> elem_0;
+}

@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <assert.h>
-#include "main.h"
-#include "list_definition.h"
+#include "list.h"
 
 //-------------------------------------------------------------------------
 //TODO enum
@@ -11,47 +10,53 @@
 // 1 << 1
 // 1 << 2
 
-list_check_t list_error (list_t* my_list)
+list_check_t list_error (list_t* my_list, int line)
 {
     if (my_list == 0)
     {
         printf ("ERROR\n"
-                "pointer for list == 0\n");
+                "pointer for list == 0\n"
+                "line = %d\n", line);
 
         return ERROR;
     }
     else if (my_list->data == 0) //TODO use define and multy-error
     {
         printf ("ERROR\n"
-                "pointer for list_data == 0\n");
+                "pointer for list_data == 0\n"
+                "line = %d\n", line);
 
         return ERROR;
     }
     else if (my_list->next == 0)
     {
         printf ("ERROR\n"
-                "pointer for list_next == 0\n");
+                "pointer for list_next == 0\n"
+                "line = %d\n", line);
 
         return ERROR;
     }
     else if (my_list->prev == 0)
     {
         printf ("ERROR\n"
-                "pointer for list_prev == 0\n");
+                "pointer for list_prev == 0\n"
+                "line = %d\n", line);
 
         return ERROR;
     }
     else if (my_list->free == 0)
     {
         printf ("ERROR\n"
-                "list_free == 0\n");
+                "list_free == 0\n"
+                "line = %d\n", line);
 
         return ERROR;
     }
     else if (my_list->number_free == 0)
     {
         printf ("ERROR\n"
-                "list_number_free == 0\n");
+                "list_number_free == 0\n"
+                "line = %d\n", line);
 
         return ERROR;
     }
@@ -63,21 +68,21 @@ list_check_t list_error (list_t* my_list)
 
 int dump_list (list_t* my_list)
 {
-    int check = list_error (my_list);
+    int check = list_error (my_list, __LINE__);
 
     if (check == OK)
     {
-        FILE* file = fopen ("data/log.dot", "w+"); //TODO const
+        FILE* file = fopen ("log/log.dot", "w"); //TODO const
         assert (file);
 
         fprintf (file, "digraph G{\n"
                  "\trankdir=LR;\n"); //TODO
 
-        fprintf (file, "\telem_list [color = \"red\",shape=record, label= \"LIST | CAPACITY: %d | <f_head> HEAD: %d | <f_tail> TAIL: %d | <f_free> FREE: %d | NUMBER_FREE: %d\"];\n", my_list->capacity, my_list->head, my_list->tail, my_list->free, my_list->number_free);
+        fprintf (file, "\telem_list [color = \"red\",shape=record, label= \"LIST | CAPACITY: %d | <f_head> HEAD: %d | <f_tail> TAIL: %d | <f_free> FREE: %d | NUMBER_FREE: %d\"];\n", my_list->capacity, my_list->next[0], my_list->prev[0], my_list->free, my_list->number_free);
 
         for (int i = 0; i < SIZE; i++) //TODO not use SIZE
         {
-            char color[10]; //TODO initial
+            char color[10] = {};
 
             if (my_list->prev[i] < 0)
             {
@@ -129,15 +134,15 @@ int dump_list (list_t* my_list)
             fprintf (file, ";\n");
         }
 
-        fprintf (file, "\telem_list:<f_head> -> elem_%d;\n", my_list->head);
+        fprintf (file, "\telem_list:<f_head> -> elem_%d;\n", my_list->next[0]);
 
-        fprintf (file, "\telem_list:<f_tail> -> elem_%d;\n", my_list->tail);
+        fprintf (file, "\telem_list:<f_tail> -> elem_%d;\n", my_list->prev[0]);
 
         if (my_list->number_free < my_list->capacity - 2)
         {
-            fprintf (file, "\telem_%d -> ", my_list->head);
+            fprintf (file, "\telem_%d -> ", my_list->next[0]);
 
-            int next = my_list->next[my_list->head];
+            int next = my_list->next[my_list->next[0]];
 
             for (int i = 0; i < my_list->capacity - my_list->number_free - NULL_ELEM; i++)
             {

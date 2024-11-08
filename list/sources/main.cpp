@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <assert.h>
-#include "main.h"
-#include "list_definition.h"
+#include "list.h"
 
 //-------------------------------------------------------------------------
 //TODO rename data rename log
@@ -17,9 +16,9 @@ int main ()
     push_back (my_list, 2);
     push_back (my_list, 1);
 
-    // emplace_front (my_list, 1, 10);
+    // emplace_front (my_list, 1, 10);              // как мы работает с индексаим которые не действительны
 
-    remove (my_list, 2);
+    remove (my_list, 2);                            // как мы работает с индексаим которые не действительны
     remove (my_list, 1);
     remove (my_list, 3);
     remove (my_list, 4);

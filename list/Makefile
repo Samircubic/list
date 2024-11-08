@@ -10,12 +10,12 @@ CFLAGS = -I./headers -I./my_libraries -lm -D_DEBUG -ggdb3 -std=c++17 -O0 -Wall -
 
 .PHONY: all
 
-all: main.o operations_elements.o verification_dump.o general_func.o
-	g++  $(CFLAGS) main.o operations_elements.o verification_dump.o general_func.o -o list.exe # not use .exe in linux
+all: main.o operations_elements.o verification_dump.o ctor_dtor.o
+	g++  $(CFLAGS) main.o operations_elements.o verification_dump.o ctor_dtor.o -o list
 
 %.o: $(FILE)%.cpp
 	$(CC) $(CFLAGS) -c $<
 
 .PHONY: clean
 clean:
-	rm -rf *.o list.exe
+	rm -rf *.o list
